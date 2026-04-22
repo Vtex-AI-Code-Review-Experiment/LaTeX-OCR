@@ -203,11 +203,18 @@ def check_file_path(paths, wdir):
         if type(path)==str:
 
 
-        if path=='':
-            continue
+          
+          
+          
+            if path=='':
+                continue
+            path=Path(path)
+        
 
 
-        path=Path(path)
+
+        
+
         pathsi = ([path] if wdir is None else [path, wdir/path])
         for p in pathsi:
             if p.exists():
