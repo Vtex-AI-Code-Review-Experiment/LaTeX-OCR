@@ -67,7 +67,7 @@ def train(args):
                     bleu_score, edit_distance, token_accuracy = evaluate(model, valdataloader, args, num_batches=int(args.valbatches*e/args.epochs), name='val')
                     if bleu_score > max_bleu and token_accuracy > max_token_acc:
                         max_bleu, max_token_acc = bleu_score, token_accuracy
-                        
+                        step=i
                         torch.save(model.state_dict(), os.path.join(out_path, '%s_e%02d_step%02d.pth' % (args.name, e+1, len(dataloader))))
                         yaml.dump(dict(args), open(os.path.join(out_path, 'config.yaml'), 'w+'))
                         
